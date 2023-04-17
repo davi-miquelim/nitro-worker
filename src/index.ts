@@ -1,4 +1,7 @@
 import { Hono } from "hono";
+import { Bindings } from "hono/dist/types/types";
+import { jwt } from "hono/jwt";
+
 import { googleHandler } from "./handlers/google";
 import { youtubeHandler } from "./handlers/youtube";
 import { facebookFeedHandler } from "./handlers/facebook.feed";
@@ -7,9 +10,12 @@ import { bulletHandler } from "./handlers/bullet";
 import { aidaHandler } from "./handlers/aida";
 import { emailHandler } from "./handlers/email";
 
-const app = new Hono();
+const app = new Hono<{ Bindings: Bindings }>();
 
-app.get("/", (c) => c.text("Hello World!"));
+app.use("/*", async (c, next) => {
+  const auth = jwt({ secret: c.env.JWT_SECRET as string });
+  return await auth(c, next);
+});
 
 app.route("/google", googleHandler);
 
