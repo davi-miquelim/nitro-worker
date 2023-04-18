@@ -6,7 +6,8 @@
   "dependencies": {
     "@planetscale/database": "^1.7.0",
     "@prisma/client": "^4.12.0",
-    "hono": "^3.1.5"
+    "hono": "^3.1.5",
+    "jose": "^4.14.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230404.0",
