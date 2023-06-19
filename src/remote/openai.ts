@@ -11,8 +11,7 @@ export const createCompletion = async ({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer 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",
+      Authorization: "Bearer YOUR_API_KEY_HERE",
     },
     body: JSON.stringify({
       model,
